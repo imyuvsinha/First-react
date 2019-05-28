@@ -3,9 +3,19 @@ import ReactDOM from 'react-dom'
 
 
 
-setInterval(function(){
-ReactDOM.render(
-    <h1>The time is {new Date().toLocaleTimeString()}</h1>,
-    document.getElementById('root')
+function MyFunction(props){
+    return <h1>HELLO {props.name} @ {props.at}</h1>;
+}
+
+
+function Show(){
+    return <div>
+     <MyFunction name='abc' at='Rpr'/>
+    <MyFunction name='def' at='Krar'/>
+    </div>
+        }
+
+ReactDOM.render(    
+   < Show/>
+, document.getElementById('root')    
 );
-},1000);
