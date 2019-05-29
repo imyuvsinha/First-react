@@ -1,29 +1,41 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class Increment extends React.Component{
+function Change(props){
+    if (props.value){
+        return <h1> This is the first one </h1>
+    }
+    return <h1>This is 2nd message</h1>
+}
+
+class Btn extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            counter: 1 ,
-            cd :2
+        this.state ={
+            value : true
+        
         }
     }
-    incre =(e, type)=>{
-        e.preventDefault();
-        this.setState ({
-            counter : type === "first" ? this.state.counter * 5 : this.state.counter ,
-            cd : type === "send" ? this.state.cd *3 : this.state.cd
-        });
-        }
 
-    render(){ 
-        return <div><a href="https://www.google.com" onClick={(e) => { this.incre(e, "first"); }}>Value is {this.state.counter}</a><hr></hr>
-         <a href="https://www.google.com" onClick={(e) => { this.incre(e, "send");}}>Value is {this.state.cd}</a>
-         </div>}
-    
+    handler =()=>{
+        this.setState({ value: !this.state.value
+
+        });
+    }
+
+
+render() {
+    return (
+        <div>
+        <Change value={this.state.value} />
+        <button onClick={this.handler}>Change the message</button>
+       
+        </div>
+    )}
 }
+
 ReactDOM.render(
-    <Increment/>,
+    <Btn/>,
     document.getElementById('root')
+    
 );
