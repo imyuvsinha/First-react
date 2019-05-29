@@ -1,30 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class Myclass extends React.Component{
+class Increment extends React.Component{
     constructor(props){
         super(props);
-        this.state ={
-            date : new Date()
+        this.state={
+            counter: 0
         }
     }
-
-    componentDidMount(){
-        setInterval(this.My,1000);
-    }
-
-    My =()=>{
-        this.setState({
-            date : new Date()
-        })
-    }
+    incre =(e)=>{
+        e.preventDefault();
+        this.setState ({
+            counter : this.state.counter + 1
+        });
+        }
 
     render(){
-        return <h1> Time is: {this.state.date.toLocaleTimeString()}</h1>
+        return <a href="https://www.google.com" onClick={this.incre}>Value is {this.state.counter}</a>
     }
+    
 }
-
 ReactDOM.render(
-    <Myclass />,
+    <Increment/>,
     document.getElementById('root')
 );
