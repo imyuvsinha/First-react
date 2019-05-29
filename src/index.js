@@ -5,19 +5,22 @@ class Increment extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            counter: 0
+            counter: 1 ,
+            cd :2
         }
     }
-    incre =(e)=>{
+    incre =(e, type)=>{
         e.preventDefault();
         this.setState ({
-            counter : this.state.counter + 1
+            counter : type === "first" ? this.state.counter * 5 : this.state.counter ,
+            cd : type === "send" ? this.state.cd *3 : this.state.cd
         });
         }
 
-    render(){
-        return <a href="https://www.google.com" onClick={this.incre}>Value is {this.state.counter}</a>
-    }
+    render(){ 
+        return <div><a href="https://www.google.com" onClick={(e) => { this.incre(e, "first"); }}>Value is {this.state.counter}</a><hr></hr>
+         <a href="https://www.google.com" onClick={(e) => { this.incre(e, "send");}}>Value is {this.state.cd}</a>
+         </div>}
     
 }
 ReactDOM.render(
