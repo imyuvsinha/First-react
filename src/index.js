@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Theme from './theme'
 import AppBar from 'material-ui/AppBar';
+import TextField from 'material-ui/TextField';
+
+
  
 
 class Calculate extends React.Component{
@@ -36,8 +39,10 @@ class Calculate extends React.Component{
         const farh = scale === 'c'? (temp*9/5) + 32 : temp;
         return (
             
-            <div>
-                 <Main /> <br></br>
+            <Theme>
+                    <AppBar title="My Calculator" />
+      
+                  <br></br>
                 <fieldset>
                     <legend>Scale Celsius</legend>
                     <input value={cels} onChange={this.handleCelsius}/>
@@ -48,16 +53,17 @@ class Calculate extends React.Component{
                     <input value={farh} onChange={this.handleFahren}/>
                 </fieldset>
                
-            </div>
+      <TextField
+      hintText="Hint Text"
+      floatingLabelText="Floating Label Text"
+    /><br />
+  
+            </Theme>
         )
     }
 }
 
-const Main = () => (
-    <MuiThemeProvider>
-      <AppBar title="My Calculator" />
-    </MuiThemeProvider>
-  );
+    
   
 
 ReactDOM.render(<Calculate/>, document.getElementById('root'));
