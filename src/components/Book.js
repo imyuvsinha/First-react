@@ -4,6 +4,8 @@ import DatePicker from "material-ui/DatePicker";
 import Divider from "material-ui/Divider";
 import TimePicker from "material-ui/TimePicker";
 import TextField from "material-ui/TextField";
+import MenuItem from "material-ui/MenuItem";
+import SelectField from "material-ui/SelectField";
 import { withRouter } from "react-router-dom";
 
 const styles = {
@@ -48,8 +50,38 @@ const styles = {
 class Book extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      serviceDate: new Date(),
+      valueFrom: null,
+      valueTo: null,
+      area: "",
+      crop: ""
+    };
   }
+  handleChange = (event, date) => {
+    this.setState({
+      serviceDate: date
+    });
+  };
+  handleChangeFrom = (event, timefrom) => {
+    this.setState({
+      valueFrom: timefrom
+    });
+  };
+  handleChangeTo = (event, timeto) => {
+    this.setState({
+      valueTo: timeto
+    });
+  };
+  handleChangeArea = (event, area) => {
+    this.setState({
+      area: area
+    });
+  };
+  handleChangeCrop = (event, index, value) => {
+    this.setState({ value });
+  };
+
   render() {
     console.log(this.props);
     return (
@@ -61,39 +93,61 @@ class Book extends Component {
         </div>
         <div style={styles.InnerDiv}>
           <p>Service Date:</p>
-          <DatePicker hintText="Select your Date" container="inline" />
+          <DatePicker
+            value={this.state.serviceDate}
+            hintText="Select your Date"
+            container="inline"
+            onChange={this.handleChange}
+          />
           <div style={styles.Timer}>
             <p>
               <u>Service Time:</u>
             </p>
             From:
-            <TimePicker hintText="From" minutesStep={5} />
+            <TimePicker
+              value={this.state.valueFrom}
+              hintText="From"
+              minutesStep={5}
+              onChange={this.handleChangeFrom}
+            />
             <br />
             To:
-            <TimePicker hintText="To" minutesStep={10} />
+            <TimePicker
+              value={this.state.valueTo}
+              hintText="To"
+              minutesStep={10}
+              onChange={this.handleChangeTo}
+            />
           </div>
           Area (in Acres):
-          <TextField hintText="enter area in acres" />
+          <TextField
+            value={this.state.area}
+            hintText="enter area in acres"
+            onChange={this.handleChangeArea}
+          />
           Crop:
-          <select style={styles.Selector}>
-            <option value="Ajwain" selected>
-              Ajwain
-            </option>
-            <option value="bajra">Bajra</option>
-            <option value="banana">Banana</option>
-            <option value="cotton">Cotton</option>
-            <option value="Groundnut">Groundnut</option>
-            <option value="Mustard">Mustard</option>
-            <option value="Paddy">Paddy</option>
-            <option value="potato">Potato</option>
-            <option value="wheat">Wheat</option>
-            <option value="vegetables">Vegetables</option>
-          </select>
+          <SelectField
+            style={styles.Selector}
+            floatingLabelText="select crop"
+            value={this.state.value}
+            onChange={this.handleChangeCrop}
+          >
+            <MenuItem value={1} primaryText="Ajwain" />
+            <MenuItem value={2} primaryText="Bajra" />
+            <MenuItem value={3} primaryText="Banana" />
+            <MenuItem value={4} primaryText="Cotton" />
+            <MenuItem value={5} primaryText="Groundnut" />
+            <MenuItem value={6} primaryText="Mustard" />
+            <MenuItem value={7} primaryText="Paddy" />
+            <MenuItem value={8} primaryText="Potato" />
+            <MenuItem value={9} primaryText="Wheat" />
+            <MenuItem value={10} primaryText="Vegetables" />
+          </SelectField>
           <button
             style={styles.SubmitButton}
             onClick={e => {
               e.preventDefault();
-              this.props.fun();
+              this.props.addfun({ ...this.state });
               this.props.history.push("/book/viewListRenter");
             }}
           >

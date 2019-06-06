@@ -11,30 +11,22 @@ import {
 import ViewListRenter from "../components/ViewListRenter";
 
 class BookContainer extends Component {
-  componentWillMount() {
-    db.collection("users")
+  addfun = data => {
+    console.log("from book");
+    console.log(data.value);
+    db.collection("renters")
       .add({
-        first: "Alan",
-        middle: "Mathison",
-        last: "Turing",
-        born: 1912
+        serviceDate: data.serviceDate ? data.serviceDate : new Date(),
+        timeFrom: data.valueFrom ? data.valueFrom : "",
+        timeTo: data.valueTo ? data.valueTo : "",
+        area: data.area ? data.area : "",
+        corn: data.value ? data.value : ""
       })
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef);
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
-      });
-  }
-  func = () => {
-    console.log("from book");
-    db.collection("users")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          console.log(doc.id);
-          console.log(doc.data().born);
-        });
       });
   };
   render() {
@@ -44,7 +36,7 @@ class BookContainer extends Component {
           <Route
             exact
             path="/book"
-            render={props => <Book {...props} fun={this.func} />}
+            render={props => <Book {...props} addfun={this.addfun} />}
           />
           <Route
             path="/book/viewListRenter"
