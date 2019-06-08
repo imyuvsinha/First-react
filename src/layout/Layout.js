@@ -11,20 +11,20 @@ import {
 import ArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconMotor from "material-ui/svg-icons/action/motorcycle";
-import IconChat from "material-ui/svg-icons/action/settings";
 import IconProfile from "material-ui/svg-icons/action/supervisor-account";
 import Paper from "material-ui/Paper";
 
 const styles = {
   appBarStyle: {
-    backgroundColor: approved,
+    backgroundColor: "#7ABA7A",
     textAlign: "center",
     width: "100%"
   },
   bottomNavigation: {
     bottom: 0,
     position: "fixed",
-    width: "100%"
+    width: "100%",
+    backgroundColor: "#7ABA7A"
   }
 };
 
@@ -70,14 +70,6 @@ class Layout extends Component {
               onClick={e => {
                 e.preventDefault();
                 this.props.history.push("/book");
-              }}
-            />
-            <BottomNavigationItem
-              label="Chats"
-              icon={<IconChat />}
-              onClick={e => {
-                e.preventDefault();
-                this.props.history.push("/chat");
               }}
             />
             <BottomNavigationItem

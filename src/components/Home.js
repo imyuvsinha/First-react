@@ -5,7 +5,7 @@ import Divider from "material-ui/Divider";
 import { withRouter } from "react-router-dom";
 const styles = {
   mainDiv: {
-    backgroundColor: approved,
+    backgroundColor: "#7ABA7A",
     height: "150px",
     width: "100%",
     display: "flex",
@@ -32,7 +32,7 @@ const styles = {
   },
   welcome: {
     backgroundColor: "white",
-    border: "3px solid green",
+    border: "3px solid  #7ABA7A",
     borderRadius: 12
   },
   content: {
@@ -130,12 +130,13 @@ class Home extends Component {
             }}
           >
             <img style={styles.productImage} src="farm.png" alt="products" />
-            <p>Products</p>
+            <p>Available products</p>
           </div>
           <div
             style={styles.subContent}
             onClick={e => {
               e.preventDefault();
+              //this.props.getMyLocation();
               this.props.history.push("/home/weatherForecast");
             }}
           >

@@ -11,15 +11,19 @@ import {
 import ViewListRenter from "../components/ViewListRenter";
 
 class BookContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      renterList: []
+    };
+  }
   addfun = data => {
-    console.log("from book");
-    console.log(data.value);
     db.collection("renters")
       .add({
         serviceDate: data.serviceDate ? data.serviceDate : new Date(),
         timeFrom: data.valueFrom ? data.valueFrom : "",
         timeTo: data.valueTo ? data.valueTo : "",
-        area: data.area ? data.area : "",
+        area: data.area ? data.area : null,
         corn: data.value ? data.value : ""
       })
       .then(function(docRef) {
@@ -29,7 +33,25 @@ class BookContainer extends Component {
         console.error("Error adding document: ", error);
       });
   };
+  componentDidMount() {
+    db.collection("renterList").onSnapshot(
+      querySnapshot => {
+        let renterList = [];
+        querySnapshot.forEach(doc => {
+          console.log(doc.id);
+          console.log(doc.data());
+          renterList.push(doc.data());
+        });
+        this.setState({ renterList });
+      },
+      err => {
+        console.log(`Encountered error: ${err}`);
+      }
+    );
+  }
   render() {
+    console.log(this.state.renterList);
+
     return (
       <Router>
         <Switch>
@@ -39,8 +61,11 @@ class BookContainer extends Component {
             render={props => <Book {...props} addfun={this.addfun} />}
           />
           <Route
+            exact
             path="/book/viewListRenter"
-            render={props => <ViewListRenter {...props} />}
+            render={props => (
+              <ViewListRenter {...props} renterList={this.state.renterList} />
+            )}
           />
         </Switch>
       </Router>
