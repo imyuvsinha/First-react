@@ -39,11 +39,12 @@ export default class ViewListRenter extends Component {
     super(props);
     this.state = {
       selected: [1],
-      open: false
+      open: false,
+      show: false
     };
   }
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: true, show: true });
   };
 
   handleClose = () => {
@@ -83,7 +84,7 @@ export default class ViewListRenter extends Component {
             </tr>
             {this.props.renterList.map(data => (
               <tr style={styles.tableRow}>
-                <td>{data.name}</td>
+                <td style={{ padding: 20 }}>{data.name}</td>
                 <td>{data.contact}</td>
                 <td>
                   <RaisedButton
@@ -94,14 +95,7 @@ export default class ViewListRenter extends Component {
                     }}
                     onClick={this.handleOpen}
                   />
-                  <Dialog
-                    actions={actions}
-                    modal={false}
-                    open={this.state.open}
-                    onRequestClose={this.handleClose}
-                  >
-                    Are you sure to Book Mr.{data.name}?
-                  </Dialog>
+
                   {/* <FlatButton
                     labelStyle={{ borderRadius: 24 }}
                     backgroundColor="green"
@@ -112,6 +106,14 @@ export default class ViewListRenter extends Component {
               </tr>
             ))}
           </table>
+          <Dialog
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+          >
+            Are you sure to Book Mr?
+          </Dialog>
         </div>
       </Layout>
     );

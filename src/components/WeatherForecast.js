@@ -69,9 +69,7 @@ export default class WeatherForecast extends Component {
         <div style={styles.mainDiv}>
           <div style={styles.innerDiv}>
             <Paper style={styles.paperDiv} zDepth={1}>
-              <span style={styles.city}>
-                Name:{this.props.weather.cityName}
-              </span>
+              <span style={styles.city}>{this.props.weather.cityName}</span>
 
               <img style={styles.meterbar} src="/meterbar.svg" />
               <span style={styles.Temp}>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Profile from "../components/Profile";
 import BookingStatus from "../components/BookingStatus";
 import About from "../components/About";
+import { googleSignOut } from "../store";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +19,7 @@ export default class ProfileContainer extends Component {
           <Route
             exact
             path="/profile"
-            render={props => <Profile {...props} />}
+            render={props => <Profile {...props} signOut={googleSignOut} />}
           />
           <Route
             exact

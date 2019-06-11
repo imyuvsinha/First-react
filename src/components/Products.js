@@ -15,7 +15,11 @@ export default class Products extends Component {
         showBottom={true}
       >
         <h1>Products:</h1>
-        <img style={{ width: window.innerWidth }} src="/comingsoon.jpg" />
+        <img
+          style={{ width: window.innerWidth }}
+          src="/comingsoon.jpg"
+          alt="soon"
+        />
       </Layout>
     );
   }

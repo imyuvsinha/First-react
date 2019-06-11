@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Layout from "../layout/Layout";
-import FlatButton from "material-ui/FlatButton";
-import FontIcon from "material-ui/FontIcon";
-import ActionAndroid from "material-ui/svg-icons/communication/email";
+import RaisedButton from "material-ui/RaisedButton";
+import Icon from "material-ui/svg-icons/image/filter-vintage";
 
 export default class Login extends Component {
   render() {
@@ -12,36 +11,47 @@ export default class Login extends Component {
           style={{
             width: window.innerWidth,
             height: window.innerHeight,
-            background: "url('/log.jpeg')"
+            background: "url('/log.jpeg')",
+            backgroundSize: "130%",
+            display: "flex",
+            flexDirection: "column"
           }}
         >
-          <span style={{ textAlign: "center", marginTop: 50, fontSize: 50 }}>
-            Login Page
-          </span>
-
-          {/* <button
+          <Icon
             style={{
-              borderColor: "#4CAF50",
-              color: "green",
-              border: "2px solid black",
-              fontSize: 16,
-              cursor: "pointer"
+              marginTop: 50,
+              marginLeft: 171,
+              height: 50,
+              width: 50,
+              color: "MediumSeaGreen",
+              backgroundColor: " white",
+              borderRadius: "50%"
             }}
-          > */}
-          {/* Success
-          </button> */}
-
-          <FlatButton
-            style={{ margin: 50, color: "green" }}
-            labelPosition="before"
-            icon={<ActionAndroid />}
-            onClick={e => {
-              e.preventDefault();
-              window.location = "http://gmail.com";
+          />
+          <span
+            style={{
+              textAlign: "center",
+              margin: 20,
+              fontSize: 30,
+              color: " white",
+              fontFamily: "fantasy"
             }}
           >
-            <b>Login </b>
-          </FlatButton>
+            Discover Agro
+          </span>
+
+          <RaisedButton
+            label="Login with GOOGLE"
+            primary={true}
+            labelStyle={{ fontSize: 20 }}
+            onClick={this.props.signWithGoogle}
+            buttonStyle={{
+              position: "fixed",
+              bottom: 0,
+              backgroundColor: "MediumSeaGreen",
+              height: 60
+            }}
+          />
         </div>
       </Layout>
     );

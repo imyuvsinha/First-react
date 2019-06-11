@@ -109,7 +109,10 @@ class Profile extends Component {
               borderRadius: 24,
               backgroundColor: "red"
             }}
-            onClick={this.handleLogout}
+            onClick={e => {
+              e.preventDefault();
+              this.props.signOut();
+            }}
           />
         </div>
       </Layout>
