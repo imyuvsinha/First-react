@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Layout from "../layout/Layout";
-import { approved } from "../stylesheets/color";
-import Divider from "material-ui/Divider";
 import { withRouter } from "react-router-dom";
+import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
-import FontIcon from "material-ui/FontIcon";
-import Motorcycle from "material-ui/svg-icons/action/motorcycle";
-import { fullWhite } from "material-ui/styles/colors";
+import RaisedButton from "material-ui/RaisedButton";
 
 const styles = {
   mainDiv: {
@@ -36,13 +33,23 @@ const styles = {
     width: window.innerWidth
   }
 };
+
 export default class ViewListRenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: [1]
+      selected: [1],
+      open: false
     };
   }
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   isSelected = index => {
     return this.state.selected.indexOf(index) !== -1;
   };
@@ -52,8 +59,18 @@ export default class ViewListRenter extends Component {
     });
   };
   render() {
+    const actions = [
+      <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
+      <FlatButton label="Book" primary={true} onClick={this.handleClose} />
+    ];
+
     return (
-      <Layout title="View List" showBackNavigation={true}>
+      <Layout
+        title="View List"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <div style={styles.mainDiv}>
           <h2>List of Renters:</h2>
         </div>
@@ -69,12 +86,28 @@ export default class ViewListRenter extends Component {
                 <td>{data.name}</td>
                 <td>{data.contact}</td>
                 <td>
-                  <FlatButton
+                  <RaisedButton
+                    label="Book"
+                    buttonStyle={{
+                      borderRadius: 24,
+                      backgroundColor: "MediumSeaGreen"
+                    }}
+                    onClick={this.handleOpen}
+                  />
+                  <Dialog
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
+                  >
+                    Are you sure to Book Mr.{data.name}?
+                  </Dialog>
+                  {/* <FlatButton
                     labelStyle={{ borderRadius: 24 }}
                     backgroundColor="green"
                     hoverColor="red"
                     icon={<Motorcycle color={fullWhite} />}
-                  />
+                  /> */}
                 </td>
               </tr>
             ))}

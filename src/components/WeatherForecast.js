@@ -6,7 +6,7 @@ const styles = {
   mainDiv: {
     width: window.innerWidth,
     height: window.innerHeight - 145,
-    backgroundColor: " #C0C0C0"
+    backgroundColor: "white"
   },
   paperDiv: {
     height: window.innerHeight - 500,
@@ -34,7 +34,7 @@ const styles = {
     padding: 20,
     borderRadius: 30
   },
-  cityName: {
+  city: {
     fontSize: 30,
     paddingLeft: 10,
     paddingTop: 10
@@ -60,11 +60,18 @@ export default class WeatherForecast extends Component {
 
   render() {
     return (
-      <Layout title="Weather Forecast" showBackNavigation={true}>
+      <Layout
+        title="Weather Forecast"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <div style={styles.mainDiv}>
           <div style={styles.innerDiv}>
             <Paper style={styles.paperDiv} zDepth={1}>
-              <span style={styles.cityName}>{this.props.weather.cityName}</span>
+              <span style={styles.city}>
+                Name:{this.props.weather.cityName}
+              </span>
 
               <img style={styles.meterbar} src="/meterbar.svg" />
               <span style={styles.Temp}>

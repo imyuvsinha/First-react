@@ -70,7 +70,12 @@ export default class cropInformation extends Component {
   }
   render() {
     return (
-      <Layout title="Crop Information" showBackNavigation={true}>
+      <Layout
+        title="Crop Information"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <h2> CropInformation</h2>
         <Divider />
 

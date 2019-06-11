@@ -33,7 +33,8 @@ const styles = {
   welcome: {
     backgroundColor: "white",
     border: "3px solid  #7ABA7A",
-    borderRadius: 12
+    borderRadius: 12,
+    margin: 8
   },
   content: {
     display: "flex",
@@ -45,9 +46,9 @@ const styles = {
   },
   subContent: {
     backgroundColor: "white",
-    width: window.innerWidth / 2 - 4,
+    width: window.innerWidth / 2,
     height: 100,
-    border: "2px solid grey",
+    // border: "2px solid grey",
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
@@ -86,10 +87,10 @@ class Home extends Component {
   }
   render() {
     return (
-      <Layout title="HOME">
+      <Layout title="HOME" showAppBar={true} showBottom={true}>
         <div style={styles.mainDiv}>
           <div style={styles.paperDiv}>
-            <p style={styles.pWeather}>Raipur </p>
+            <span style={styles.pWeather}>Raipur</span>
             <Divider />
             <div>
               <img style={styles.img} src="Weather.png" alt="weather" />

@@ -85,11 +85,15 @@ class Book extends Component {
   render() {
     console.log(this.props);
     return (
-      <Layout title="Book your Vehicle" showBackNavigation={true}>
+      <Layout
+        title="Book your Vehicle"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <div style={styles.mainDIv}>
-          <button style={styles.Button} onClick="" />
-          <input type="text" placeholder="sub-location" />
           <Divider style={styles.Divider} />
+          <h1>Select your requirements</h1>
         </div>
         <div style={styles.InnerDiv}>
           <p>Service Date:</p>

@@ -8,7 +8,12 @@ export default class QuestionAnswer extends Component {
   }
   render() {
     return (
-      <Layout title="Question-Answer" showBackNavigation={true}>
+      <Layout
+        title="Question-Answer"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <h1>Q&Api:</h1>
       </Layout>
     );

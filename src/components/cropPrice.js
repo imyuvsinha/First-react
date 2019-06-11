@@ -8,8 +8,13 @@ export default class cropPrice extends Component {
   }
   render() {
     return (
-      <Layout title="Crop Price" showBackNavigation={true}>
-        <h1>welcome to crop Price details</h1>
+      <Layout
+        title="Crop Price"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
+        <h1>Welcome to crop Price details</h1>
       </Layout>
     );
   }

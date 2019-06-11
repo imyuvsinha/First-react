@@ -8,8 +8,14 @@ export default class Products extends Component {
   }
   render() {
     return (
-      <Layout title="Products" showBackNavigation={true}>
+      <Layout
+        title="Products"
+        showAppBar={true}
+        showBackNavigation={true}
+        showBottom={true}
+      >
         <h1>Products:</h1>
+        <img style={{ width: window.innerWidth }} src="/comingsoon.jpg" />
       </Layout>
     );
   }

@@ -17,6 +17,7 @@ class BookContainer extends Component {
       renterList: []
     };
   }
+
   addfun = data => {
     db.collection("renters")
       .add({
@@ -53,22 +54,20 @@ class BookContainer extends Component {
     console.log(this.state.renterList);
 
     return (
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/book"
-            render={props => <Book {...props} addfun={this.addfun} />}
-          />
-          <Route
-            exact
-            path="/book/viewListRenter"
-            render={props => (
-              <ViewListRenter {...props} renterList={this.state.renterList} />
-            )}
-          />
-        </Switch>
-      </Router>
+      <div>
+        <Route
+          exact
+          path="/book"
+          render={props => <Book {...props} addfun={this.addfun} />}
+        />
+        <Route
+          exact
+          path="/book/viewListRenter"
+          render={props => (
+            <ViewListRenter {...props} renterList={this.state.renterList} />
+          )}
+        />
+      </div>
     );
   }
 }

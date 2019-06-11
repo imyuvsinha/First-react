@@ -34,54 +34,57 @@ class Layout extends Component {
     this.state = {};
   }
   render() {
-    console.log(this.props.showBackNavigation);
     return (
       <MuiThemeProvider>
-        <AppBar
-          style={styles.appBarStyle}
-          title={this.props.title}
-          iconElementLeft={
-            <IconButton>
-              {this.props.showBackNavigation ? (
-                <ArrowBack
-                  onClick={e => {
-                    e.preventDefault();
-                    this.props.history.goBack();
-                  }}
-                />
-              ) : null}
-            </IconButton>
-          }
-        />
+        {this.props.showAppBar ? (
+          <AppBar
+            style={styles.appBarStyle}
+            title={this.props.title}
+            iconElementLeft={
+              <IconButton>
+                {this.props.showBackNavigation ? (
+                  <ArrowBack
+                    onClick={e => {
+                      e.preventDefault();
+                      this.props.history.goBack();
+                    }}
+                  />
+                ) : null}
+              </IconButton>
+            }
+          />
+        ) : null}
         {this.props.children}
-        <Paper zDepth={1}>
-          <BottomNavigation style={styles.bottomNavigation}>
-            <BottomNavigationItem
-              label="Home"
-              icon={<IconHome />}
-              onClick={e => {
-                e.preventDefault();
-                this.props.history.push("/home");
-              }}
-            />
-            <BottomNavigationItem
-              label="Book"
-              icon={<IconMotor />}
-              onClick={e => {
-                e.preventDefault();
-                this.props.history.push("/book");
-              }}
-            />
-            <BottomNavigationItem
-              label="Profile"
-              icon={<IconProfile />}
-              onClick={e => {
-                e.preventDefault();
-                this.props.history.push("/profile");
-              }}
-            />
-          </BottomNavigation>
-        </Paper>
+        {this.props.showBottom ? (
+          <Paper zDepth={1}>
+            <BottomNavigation style={styles.bottomNavigation}>
+              <BottomNavigationItem
+                label="Home"
+                icon={<IconHome />}
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.history.push("/home");
+                }}
+              />
+              <BottomNavigationItem
+                label="Book"
+                icon={<IconMotor />}
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.history.push("/book");
+                }}
+              />
+              <BottomNavigationItem
+                label="Profile"
+                icon={<IconProfile />}
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.history.push("/profile");
+                }}
+              />
+            </BottomNavigation>
+          </Paper>
+        ) : null}
       </MuiThemeProvider>
     );
   }
