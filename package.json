@@ -10,6 +10,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-swipeable-views": "^0.13.3",
     "unirest": "^0.6.0"
   },
   "scripts": {

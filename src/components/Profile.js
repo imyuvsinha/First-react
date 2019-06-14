@@ -19,10 +19,7 @@ const styles = {
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: "username",
-      address: ""
-    };
+    this.state = {};
   }
   // handleChange = event => {
   //   this.setState({
@@ -44,57 +41,57 @@ class Profile extends Component {
         <div style={styles.mainDiv}>
           <List>
             <ListItem
-              style={{ marginLeft: -8 }}
+              style={{ marginLeft: -8, marginBottom: 8 }}
               leftAvatar={<Avatar src="/boy.svg" />}
             />
             <span>
               Name:
-              <TextField
-                style={{ paddingLeft: 20 }}
-                id="text-field-controlled"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
+              {this.props.user ? this.props.user.displayName : ""}
             </span>
             <ListItem
-              style={{ marginLeft: -8, width: "10%" }}
+              style={{ marginLeft: -8, width: "10%", marginBottom: 8 }}
               leftAvatar={<Avatar src="/home.png" />}
             />
-            <span>
-              Address:
-              <TextField
-                style={{ paddingLeft: 20 }}
-                id="text-field-controlled"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </span>
+            <span>Email : {this.props.user ? this.props.user.email : " "}</span>
             <ListItem
-              style={{ marginLeft: -8, width: "10%" }}
+              style={{ marginLeft: -8, width: "10%", marginBottom: 12 }}
               leftAvatar={<Avatar src="/phone.png" />}
             />
             <span>
-              Contact:
-              <TextField
-                style={{ paddingLeft: 20 }}
-                id="text-field-controlled"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
+              Contact:{this.props.user ? this.props.user.phoneNumber : ""}
             </span>
-            <Divider />
+            <Divider style={{ margin: 15 }} />
 
             <img
               src="/about.png"
-              style={{ width: 80 }}
+              style={{ width: 80, marginBottom: 8 }}
               onClick={e => {
                 e.preventDefault();
                 this.props.history.push("/profile/about");
               }}
             />
             <FlatButton
+              label="My Booking status"
+              labelStyle={{ letterSpacing: 1 }}
+              style={{
+                backgroundColor: "#0e77be",
+                borderRadius: 10,
+                margin: 40
+              }}
+              onClick={e => {
+                e.preventDefault();
+                this.props.history.push(
+                  "/myVehicle/vehicleDetails/:mybookings"
+                );
+              }}
+            />
+            <FlatButton
               label="Check your Booking status"
-              style={{ backgroundColor: "MediumSeaGreen", margin: 50 }}
+              labelStyle={{ letterSpacing: 5 }}
+              style={{
+                backgroundColor: "MediumSeaGreen",
+                marginLeft: 20
+              }}
               onClick={e => {
                 e.preventDefault();
                 this.props.history.push("/profile/bookingStatus");

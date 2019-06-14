@@ -4,14 +4,15 @@ import DatePicker from "material-ui/DatePicker";
 import Divider from "material-ui/Divider";
 import TimePicker from "material-ui/TimePicker";
 import TextField from "material-ui/TextField";
-import MenuItem from "material-ui/MenuItem";
-import SelectField from "material-ui/SelectField";
+
 import { withRouter } from "react-router-dom";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 const styles = {
   mainDIv: {
     backgroundColor: "#E5E4D7",
-    height: 100
+    height: 60
   },
   Button: {
     width: 104,
@@ -35,13 +36,13 @@ const styles = {
     fontSize: 17
   },
   SubmitButton: {
-    backgroundColor: "green",
-    width: 146,
-    height: 40,
-    marginBottom: 21,
-    marginTop: 18,
+    backgroundColor: "MediumSeaGreen",
+    width: 145,
+    height: 49,
+    marginBottom: 15,
+    marginTop: 3,
     marginLeft: 123,
-    fontSize: 20,
+    fontSize: 28,
     fontFamily: "monospace",
     borderRadius: 35
   }
@@ -55,7 +56,7 @@ class Book extends Component {
       valueFrom: null,
       valueTo: null,
       area: "",
-      crop: ""
+      type: ""
     };
   }
   handleChange = (event, date) => {
@@ -78,8 +79,8 @@ class Book extends Component {
       area: area
     });
   };
-  handleChangeCrop = (event, index, value) => {
-    this.setState({ value });
+  handleIndexChange = (event, index, type) => {
+    this.setState({ type });
   };
 
   render() {
@@ -96,7 +97,7 @@ class Book extends Component {
           <h1>Select your requirements</h1>
         </div>
         <div style={styles.InnerDiv}>
-          <p>Service Date:</p>
+          <p style={{ fontSize: 20, fontFamily: "monospace" }}>Service Date:</p>
           <DatePicker
             value={this.state.serviceDate}
             hintText="Select your Date"
@@ -104,10 +105,10 @@ class Book extends Component {
             onChange={this.handleChange}
           />
           <div style={styles.Timer}>
-            <p>
+            <p style={{ fontSize: 20, fontFamily: "monospace" }}>
               <u>Service Time:</u>
             </p>
-            From:
+            <span style={{ fontSize: 20, fontFamily: "monospace" }}>From:</span>
             <TimePicker
               value={this.state.valueFrom}
               hintText="From"
@@ -115,7 +116,7 @@ class Book extends Component {
               onChange={this.handleChangeFrom}
             />
             <br />
-            To:
+            <span style={{ fontSize: 20, fontFamily: "monospace" }}>To</span>
             <TimePicker
               value={this.state.valueTo}
               hintText="To"
@@ -123,30 +124,33 @@ class Book extends Component {
               onChange={this.handleChangeTo}
             />
           </div>
-          Area (in Acres):
+          <span style={{ fontSize: 20, fontFamily: "monospace" }}>
+            Area (in Acres):
+          </span>
           <TextField
             value={this.state.area}
             hintText="enter area in acres"
             onChange={this.handleChangeArea}
           />
-          Crop:
-          <SelectField
-            style={styles.Selector}
-            floatingLabelText="select crop"
-            value={this.state.value}
-            onChange={this.handleChangeCrop}
-          >
-            <MenuItem value={1} primaryText="Ajwain" />
-            <MenuItem value={2} primaryText="Bajra" />
-            <MenuItem value={3} primaryText="Banana" />
-            <MenuItem value={4} primaryText="Cotton" />
-            <MenuItem value={5} primaryText="Groundnut" />
-            <MenuItem value={6} primaryText="Mustard" />
-            <MenuItem value={7} primaryText="Paddy" />
-            <MenuItem value={8} primaryText="Potato" />
-            <MenuItem value={9} primaryText="Wheat" />
-            <MenuItem value={10} primaryText="Vegetables" />
-          </SelectField>
+          <span style={{ fontSize: 20, fontFamily: "monospace" }}>
+            Vehicle Type:
+            <SelectField
+              value={this.state.type}
+              onChange={this.handleIndexChange}
+            >
+              <MenuItem
+                value={"tractor"}
+                label="Tractor"
+                primaryText="Tractor"
+              />
+              <MenuItem
+                value={"thresher"}
+                label="Thresher"
+                primaryText="Thresher"
+              />
+            </SelectField>
+          </span>
+
           <button
             style={styles.SubmitButton}
             onClick={e => {

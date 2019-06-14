@@ -19,7 +19,13 @@ export default class ProfileContainer extends Component {
           <Route
             exact
             path="/profile"
-            render={props => <Profile {...props} signOut={googleSignOut} />}
+            render={props => (
+              <Profile
+                {...props}
+                signOut={googleSignOut}
+                user={this.props.user}
+              />
+            )}
           />
           <Route
             exact

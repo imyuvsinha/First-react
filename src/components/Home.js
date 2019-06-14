@@ -98,7 +98,7 @@ class Home extends Component {
           </div>
         </div>
         <div style={styles.welcome}>
-          <h2> Hi, User</h2>
+          <h2> Hi, {this.props.user ? this.props.user.displayName : "User"}</h2>
           <p> Choose a Farm section</p>
         </div>
         <div style={styles.content}>
@@ -162,7 +162,7 @@ class Home extends Component {
             style={styles.subContent}
             onClick={e => {
               e.preventDefault();
-              this.props.history.push("/book");
+              this.props.history.push("/uploadVehicle");
             }}
           >
             <img
@@ -170,7 +170,7 @@ class Home extends Component {
               src="tractors.jpg"
               alt="Book-A-tractor"
             />
-            <p>Book a Tractor</p>
+            <p>Add your vehicle</p>
           </div>
         </div>
       </Layout>

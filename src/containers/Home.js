@@ -15,6 +15,7 @@ export default class HomeContainer extends Component {
       weather: false
     };
   }
+
   componentWillMount() {
     this.getMyLocation();
   }
@@ -80,7 +81,11 @@ export default class HomeContainer extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/home" render={props => <Home {...props} />} />
+          <Route
+            exact
+            path="/home"
+            render={props => <Home {...props} user={this.props.user} />}
+          />
 
           <Route
             exact

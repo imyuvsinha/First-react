@@ -19,13 +19,14 @@ class BookContainer extends Component {
   }
 
   addfun = data => {
+    console.log(data);
     db.collection("renters")
       .add({
         serviceDate: data.serviceDate ? data.serviceDate : new Date(),
         timeFrom: data.valueFrom ? data.valueFrom : "",
         timeTo: data.valueTo ? data.valueTo : "",
         area: data.area ? data.area : null,
-        corn: data.value ? data.value : ""
+        vehicleType: data.type ? data.type : ""
       })
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef);
@@ -54,20 +55,22 @@ class BookContainer extends Component {
     console.log(this.state.renterList);
 
     return (
-      <div>
-        <Route
-          exact
-          path="/book"
-          render={props => <Book {...props} addfun={this.addfun} />}
-        />
-        <Route
-          exact
-          path="/book/viewListRenter"
-          render={props => (
-            <ViewListRenter {...props} renterList={this.state.renterList} />
-          )}
-        />
-      </div>
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/book"
+            render={props => <Book {...props} addfun={this.addfun} />}
+          />
+          <Route
+            exact
+            path="/book/viewListRenter"
+            render={props => (
+              <ViewListRenter {...props} renterList={this.state.renterList} />
+            )}
+          />
+        </Switch>
+      </Router>
     );
   }
 }

@@ -40,11 +40,12 @@ export default class ViewListRenter extends Component {
     this.state = {
       selected: [1],
       open: false,
-      show: false
+      show: false,
+      name: ""
     };
   }
-  handleOpen = () => {
-    this.setState({ open: true, show: true });
+  handleOpen = (e, name) => {
+    this.setState({ open: true, show: true, name: name });
   };
 
   handleClose = () => {
@@ -60,6 +61,8 @@ export default class ViewListRenter extends Component {
     });
   };
   render() {
+    console.log(this.state.name);
+    console.log(this.props.renterList);
     const actions = [
       <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
       <FlatButton label="Book" primary={true} onClick={this.handleClose} />
@@ -90,10 +93,10 @@ export default class ViewListRenter extends Component {
                   <RaisedButton
                     label="Book"
                     buttonStyle={{
-                      borderRadius: 24,
+                      borderRadiundefinedus: 24,
                       backgroundColor: "MediumSeaGreen"
                     }}
-                    onClick={this.handleOpen}
+                    onClick={e => this.handleOpen(e, data.name)}
                   />
 
                   {/* <FlatButton
@@ -106,13 +109,14 @@ export default class ViewListRenter extends Component {
               </tr>
             ))}
           </table>
+
           <Dialog
             actions={actions}
             modal={false}
             open={this.state.open}
             onRequestClose={this.handleClose}
           >
-            Are you sure to Book Mr?
+            Are you sure to Book Mr {this.state.name}?
           </Dialog>
         </div>
       </Layout>

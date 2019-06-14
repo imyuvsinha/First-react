@@ -18,7 +18,7 @@ const styles = {
   appBarStyle: {
     backgroundColor: "#7ABA7A",
     textAlign: "center",
-    width: "100%"
+    width: "window.innerWidth"
   },
   bottomNavigation: {
     bottom: 0,
