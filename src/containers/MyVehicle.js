@@ -9,6 +9,7 @@ import { withRouter } from "react-router-dom";
 import MyVehicle from "../components/MyVehicle";
 import { db } from "../store";
 import VehicleDetails from "../components/VehicleDetails";
+import UploadVehicle from "../components/UploadVehicle";
 class MyVehicleContainer extends Component {
   constructor(props) {
     super(props);
@@ -16,16 +17,37 @@ class MyVehicleContainer extends Component {
       vehicleList: []
     };
   }
+  addVehicle = data => {
+    console.log(data);
+    db.collection("vehicles")
+      .add({
+        ownerId: this.props.user.uid ? this.props.user.uid : "",
+        ownerName: data.ownerName ? data.ownerName : "",
+        vehicleName: data.vehicleName ? data.vehicleName : "",
+        vehicleNumber: data.vehicleNo ? data.vehicleNo : "",
+        vehicleType: data.vehicleType ? data.vehicleType : "",
+        area: data.fieldArea ? data.fieldArea : "",
+        rate: data.rate ? data.rate : "",
+        availability: data.availability
+      })
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
+  };
 
   componentWillMount() {
     db.collection("vehicles").onSnapshot(
       querySnapshot => {
         let vehicleList = [];
-
         querySnapshot.forEach(doc => {
+          const vehicleDatas = doc.data();
+          vehicleDatas.id = doc.id;
           console.log(doc.id);
           console.log(doc.data());
-          vehicleList.push({ id: doc.id, data: doc.data() });
+          vehicleList.push(vehicleDatas);
         });
         this.setState({ vehicleList });
       },
@@ -40,15 +62,24 @@ class MyVehicleContainer extends Component {
         <Switch>
           <Route
             exact
-            path="/myVehicle"
+            path="/myVehicle/vehicleDetails/:id"
             render={props => (
-              <MyVehicle {...props} vehicleList={this.state.vehicleList} />
+              <VehicleDetails vehicles={this.state.vehicleList} {...props} />
             )}
           />
           <Route
             exact
-            path="/myVehicle/vehicleDetails/:id"
-            render={props => <VehicleDetails {...props} />}
+            path="/myVehicle/uploadVehicle"
+            render={props => (
+              <UploadVehicle {...props} addVehicle={this.addVehicle} />
+            )}
+          />
+          <Route
+            exact
+            path="/myVehicle"
+            render={props => (
+              <MyVehicle {...props} vehicleList={this.state.vehicleList} />
+            )}
           />
         </Switch>
       </Router>

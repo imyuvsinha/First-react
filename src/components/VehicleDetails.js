@@ -33,10 +33,17 @@ export default class VehicleDetails extends Component {
   };
 
   render() {
-    console.log();
+    console.log(this.props.match.params.id);
+    let vehicle = null;
+    if (this.props.vehicles.length > 0) {
+      vehicle = this.props.vehicles.find(
+        e => e.id === this.props.match.params.id
+      );
+      console.log(vehicle);
+    }
     return (
       <Layout
-        title={this.props.match.params.id}
+        title="title"
         showAppBar={true}
         showBackNavigation={true}
         showBottom={true}
@@ -66,14 +73,14 @@ export default class VehicleDetails extends Component {
               <table style={styles.table}>
                 <tr>
                   <th>Name</th>
-                  <th>Booking Date</th>
+                  <th>Date</th>
                   <th>Area</th>
                   <th>Action</th>
                 </tr>
               </table>
               <br />
             </div>
-            <div style={styles.slide}>slide n°2</div>
+            <div style={styles.slide}>Second Data</div>
             {/* <div style={styles.slide}>slide n°3</div> */}
           </SwipeableViews>
         </div>

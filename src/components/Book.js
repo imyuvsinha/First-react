@@ -156,7 +156,7 @@ class Book extends Component {
             onClick={e => {
               e.preventDefault();
               this.props.addfun({ ...this.state });
-              this.props.history.push("/book/viewListRenter");
+              this.props.history.push("/book/bookVehicle/viewListRenter");
             }}
           >
             Book

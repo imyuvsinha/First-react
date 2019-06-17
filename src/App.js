@@ -14,6 +14,8 @@ import { firebase } from "./store";
 import { db } from "./store";
 import MyVehicleContainer from "./containers/MyVehicle";
 import UploadVehicleContainer from "./containers/UploadVehicle";
+import BookOptionContainer from "./containers/BookOption";
+import VehicleDetailsContainer from "./containers/VehicleDetails";
 
 class App extends Component {
   constructor(props) {
@@ -74,29 +76,31 @@ class App extends Component {
             render={props => <HomeContainer {...props} user={user} />}
           />
           <Route
-            exact
             path="/login"
             render={props => <LoginContainer {...props} />}
           />
           <Route
-            exact
             path="/book"
-            render={props => <BookContainer {...props} />}
+            render={props => <BookOptionContainer {...props} />}
           />
           <Route
             path="/profile"
             render={props => <ProfileContainer {...props} user={user} />}
           />
           <Route
-            path="/uploadVehicle"
+            path="/myVehicle"
             render={props => (
-              <UploadVehicleContainer {...props} user={this.state.user} />
+              <MyVehicleContainer {...props} user={this.state.user} />
             )}
           />
-          <Route
-            path="/myVehicle"
-            render={props => <MyVehicleContainer {...props} />}
-          />
+          {/* <Route
+            path="/vehicleDetails"
+            render={props => (
+              <VehicleDetailsContainer {...props} user={this.state.user} />
+            )}
+          /> */}
+
+          <Redirect from="/" to="/home" />
           {/* {!user} ? <Redirect from="/" to="/login" /> : */}
           {/* <Redirect from="/login" to="/home" /> */}
         </Switch>

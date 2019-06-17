@@ -72,6 +72,7 @@ class UploadVehicle extends Component {
     this.setState({ vehicleType: type });
   };
   render() {
+    // console.log("upload page");
     return (
       <Layout
         title="Add your vehicle"

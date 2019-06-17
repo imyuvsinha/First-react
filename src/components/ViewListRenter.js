@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
+import Snackbar from "material-ui/Snackbar";
 
 const styles = {
   mainDiv: {
@@ -40,6 +41,7 @@ export default class ViewListRenter extends Component {
     this.state = {
       selected: [1],
       open: false,
+      openSnack: false,
       show: false,
       name: ""
     };
@@ -49,7 +51,7 @@ export default class ViewListRenter extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ openSnack: false });
   };
 
   isSelected = index => {
@@ -60,17 +62,21 @@ export default class ViewListRenter extends Component {
       selected: selectedRows
     });
   };
+  handleSnack = () => {
+    this.setState({ open: false, openSnack: true });
+  };
+
   render() {
     console.log(this.state.name);
     console.log(this.props.renterList);
     const actions = [
       <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
-      <FlatButton label="Book" primary={true} onClick={this.handleClose} />
+      <FlatButton label="Book" primary={true} onClick={this.handleSnack} />
     ];
 
     return (
       <Layout
-        title="View List"
+        title="View List of Renters"
         showAppBar={true}
         showBackNavigation={true}
         showBottom={true}
@@ -118,6 +124,13 @@ export default class ViewListRenter extends Component {
           >
             Are you sure to Book Mr {this.state.name}?
           </Dialog>
+          <Snackbar
+            open={this.state.openSnack}
+            message="Your Booking process has Started"
+            autoHideDuration={2000}
+            bodyStyle={{ height: 60 }}
+            onRequestClose={this.handleClose}
+          />
         </div>
       </Layout>
     );

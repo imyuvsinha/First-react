@@ -80,9 +80,7 @@ class Profile extends Component {
               }}
               onClick={e => {
                 e.preventDefault();
-                this.props.history.push(
-                  "/myVehicle/vehicleDetails/:mybookings"
-                );
+                this.props.history.push("/myVehicle");
               }}
             />
             <FlatButton
